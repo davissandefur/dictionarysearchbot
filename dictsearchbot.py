@@ -47,8 +47,10 @@ async def on_message(message):
         if grammatical:
             await client.send_message(message.channel, grammatical)
 
-        elif suggestions:
-            await client.send_message(message.channel, "No entry found.")
+        if message.content.split()[0] in ['!eid', '!fgb', '!afb']:
+            await client.send_message(message.channel, "No entry found")
+
+        if suggestions:
             await client.send_message(message.channel, suggestions)
 
 

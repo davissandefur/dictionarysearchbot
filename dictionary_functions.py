@@ -79,32 +79,18 @@ def entry_cleanup(html):
         return entries
 
 
-def word_store(word, wordlist):
-    """ This function takes a word and a word list. If the word list is longer than 5 words, it deletes the last one
-    and adds the word given to the front. If less than 5, it just adds it to the front.
-    """
-    wordlist.insert(0, word)
-    if len(wordlist) > 5:
-        wordlist.pop()
-    return wordlist
-
-
 def string_cleanup(string):
     """ This function takes a string with excess whitespace and cleans it up
     """
-    suggestions = str(string[0])
-    suggestions = ' '.join(suggestions.split())
+    try:
+        suggestions = str(string[0])
+        suggestions = ' '.join(suggestions.split())
 
-    return suggestions
+        return suggestions
 
+    except:
+        return ''
 
-def language_change(string):
-    """ This function takes the cleaned up string of suggestions and changes "similar words" to the irish equivalent
-    """
-    words = string[16:]
-    language_head = "Focail chosúla: "
-
-    return language_head + words
 
 if __name__ == "__main__":
         entry, suggestions, form_of, url = entry_lookup("find out", "english", "english")
