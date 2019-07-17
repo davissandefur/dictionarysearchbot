@@ -4,7 +4,8 @@ from irish_dictionary import irish_dictionary, gaeilge_gaeilge
 token = 'NTk4NjA5NTQ0MjM4NzI3MTcw.XSZIqQ.7Tx-2rrmyc7T2-_ihoC0g3YIYTM'
 
 client = discord.Client()
-
+grammatical = ''
+suggestions = ''
 @client.event
 async def on_message(message):
     if message.author == client.user:
@@ -12,7 +13,7 @@ async def on_message(message):
 
     entries = []
     if len(message.content.split()) > 1:
-        word = message.content.split()[1].lower()
+        word = ' '.join(message.content.split()[1:]).lower()
 
     if message.content.startswith('!eid'):
         entries, suggestions, grammatical, url = irish_dictionary(word,
@@ -46,7 +47,7 @@ async def on_message(message):
         if grammatical:
             await client.send_message(message.channel, grammatical)
 
-        else:
+        elif suggestions:
             await client.send_message(message.channel, "No entry found.")
             await client.send_message(message.channel, suggestions)
 

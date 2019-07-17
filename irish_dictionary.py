@@ -35,14 +35,6 @@ def gaeilge_gaeilge(word):
     return entries
 
 if __name__ == '__main__':
-    irish_entry, irish_suggestions, irish_wordlist, form_of = irish_dictionary('bí', 'irish', 'gaeilge')
-    print(irish_wordlist)  # Prints before English word gets added
-    english_entry, english_suggestions, english_wordlist, foo = irish_dictionary('hello', 'english', 'english')
-    print(irish_entry)
-    print()
-    print(irish_suggestions)
-    print()
-    print(english_entry)
-    print(english_suggestions)
-    print()
-    print(english_wordlist)
+    irish_entry, irish_suggestions, form_of, url = irish_dictionary('bain le', 'irish', 'english')
+    english_entry, english_suggestions, foo, url2 = irish_dictionary('hello', 'english', 'english')
+    print(form_of)

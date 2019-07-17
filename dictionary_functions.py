@@ -18,6 +18,7 @@ def entry_lookup(word, language, version):
     from teanglann.ie.
     """
     word = urllib.parse.quote_plus(word)
+    word = '%20'.join(word.split('+'))
     language = language.lower()
     breis_slug = {"english": "eid", "irish": "fgb"}  # Path slug for teanglann
 
@@ -104,3 +105,9 @@ def language_change(string):
     language_head = "Focail chosúla: "
 
     return language_head + words
+
+if __name__ == "__main__":
+        entry, suggestions, form_of, url = entry_lookup("find out", "english", "english")
+        print(entry)
+        entry, suggestions, form_of, url = entry_lookup("bain le", "irish", "english")
+        print(entry)
