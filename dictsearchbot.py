@@ -1,13 +1,14 @@
 import discord
 from irish_dictionary import irish_dictionary, gaeilge_gaeilge
 
-token = 'NTk4NjA5NTQ0MjM4NzI3MTcw.XSZIqQ.7Tx-2rrmyc7T2-_ihoC0g3YIYTM'
+token = 'NTk4NjA5NTQ0MjM4NzI3MTcw.XSZIlA.ufghXhgZFTNVqF6cQIXAgUhHpHA'
 
 client = discord.Client()
-grammatical = ''
-suggestions = ''
+
 @client.event
 async def on_message(message):
+    grammatical = ''
+    suggestions = ''
     if message.author == client.user:
         return
 
@@ -29,29 +30,29 @@ async def on_message(message):
         entries = gaeilge_gaeilge(word)
 
     if message.content.startswith('!help'):
-        await client.send_message(message.channel, "!eid for English to Irish")
-        await client.send_message(message.channel, "!fgb for Irish to English")
-        await client.send_message(message.channel, "!afb for Irish to Irish")
+        await message.channel.send("!eid for English to Irish")
+        await message.channel.send("!fgb for Irish to English")
+        await message.channel.send("!afb for Irish to Irish")
 
     for entry in entries:
         too_long = False
         if(len(entry)>2000):
             entry = entry[:2000]
             too_long = True
-        await client.send_message(message.channel,entry)
+        await message.channel.send(entry)
         if too_long:
-            await client.send_message(message.channel, "**Entry shortened**. " +
+            await message.channel.send("**Entry shortened**. " +
                                         "Find original here: " + url)
 
     if not entries:
         if grammatical:
-            await client.send_message(message.channel, grammatical)
+            await message.channel.send(grammatical)
 
         if message.content.split()[0] in ['!eid', '!fgb', '!afb']:
-            await client.send_message(message.channel, "No entry found")
+            await message.channel.send("No entry found")
 
         if suggestions:
-            await client.send_message(message.channel, suggestions)
+            await message.channel.send(suggestions)
 
 
 
