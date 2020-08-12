@@ -36,7 +36,7 @@ def entry_lookup(word, language, version):
             return ['Guth amháin'], ['Guth amháin'], None
 
     html = response.read()
-    soup = BeautifulSoup(html)
+    soup = BeautifulSoup(html,features="html.parser")
     entry = soup.findAll("div", class_=breis_slug[language] + " entry")
     suggestions = soup.findAll("div", class_="suggestions")
     form_of = soup.findAll("div", class_="know")
