@@ -1,7 +1,7 @@
 import discord
 from irish_dictionary import irish_dictionary, gaeilge_gaeilge
 
-token = 'NTk4NjA5NTQ0MjM4NzI3MTcw.G_7lGH.hMiLDiH3lgYsfe65Ze0l4SZ3KI_J1P3fxDK4Pc'
+token = ''
 
 client = discord.Client()
 
